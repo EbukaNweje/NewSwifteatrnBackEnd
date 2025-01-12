@@ -781,9 +781,7 @@ exports.forgotPassword = async (req, res, next) => {
       const token = jwt.sign({ id: userEmail._id }, process.env.JWT, {
         expiresIn: "10m",
       });
-      const resetURL = `${req.protocol}://${req.get(
-            'host',
-          )}/api/reset-password/${userEmail._id}/${token}`
+      const resetURL = `https://swifteatrn-prime-dash-board.vercel.app/#/reset-password/${userEmail._id}/${token}`
 
           // const message = `Forgot your password? Submit patch request with your new password to: ${resetURL}.
           //  \nIf you didnt make this request, simply ignore. Password expires in 10 minutes`
