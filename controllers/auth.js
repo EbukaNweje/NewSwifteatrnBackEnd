@@ -784,7 +784,7 @@ exports.forgotPassword = async (req, res, next) => {
       });
       const resetURL = `${req.protocol}://${req.get(
             'host',
-          )}/api/restLink/${userEmail._id}/${token}`
+          )}/reset-password/${userEmail._id}/${token}`
 
           // const message = `Forgot your password? Submit patch request with your new password to: ${resetURL}.
           //  \nIf you didnt make this request, simply ignore. Password expires in 10 minutes`
