@@ -189,7 +189,7 @@ exports.verifySuccessful = async (req, res, next) => {
           attachments: [{
             filename: 'OKX EXCHANGE.jpg',
             path: __dirname+'/OKX EXCHANGE.jpg',
-            cid: 'OKX EXCHANGE' //same cid value as in the html img src
+            cid: 'OKX EXCHANGE'
         }]
       }
 
