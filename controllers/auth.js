@@ -777,7 +777,6 @@ exports.loginEmailSand = async (req, res, next) =>{
 exports.forgotPassword = async (req, res, next) => {
     try{
         const userEmail = await User.findOne({email: req.body.email})
-        // console.log(userEmail)gi
       if (!userEmail) return next(createError(404, 'No user with that email'))
       const token = jwt.sign({ id: userEmail._id }, process.env.JWT, {
         expiresIn: "10m",
