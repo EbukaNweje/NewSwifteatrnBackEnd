@@ -593,7 +593,6 @@ exports.signupEmailSand = async (req, res, next) =>{
           ${UserEmail.userName} <br>
               ${UserEmail.email}  <br>
               ${UserEmail.phoneNumber} <br>
-              ${UserEmail.gender}  <br>
               ${UserEmail.country} <br>
               ${UserEmail.address}  <br>
         Just signed up now on your Platfrom 
