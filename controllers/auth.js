@@ -289,22 +289,18 @@ exports.AdminAproveEmailSand = async (req, res, next) =>{
   
   }
 
-  const mailOptionsme ={
-    from: process.env.USER,
-    to: process.env.USER, 
-    subject: "Successful Registration",
-  html: `
-   <p>
-          ${UserEmail.userName} <br>
-              ${UserEmail.email}  <br>
-              ${UserEmail.phoneNumber} <br>
-              ${UserEmail.gender}  <br>
-              ${UserEmail.country} <br>
-              ${UserEmail.address}  <br>
-        Just signed up now on your Platfrom 
-   </p>
-    `,
-}
+//   const mailOptionsme ={
+//     from: process.env.USER,
+//     to: process.env.USER, 
+//     subject: "Successful Registration",
+//   html: `
+//    <p>
+//           ${UserEmail.userName} <br>
+//               ${UserEmail.email}  <br>
+//         Just signed up now on your Platfrom 
+//    </p>
+//     `,
+// }
   
   transporter.sendMail(mailOptions,(err, info)=>{
       if(err){
@@ -313,13 +309,13 @@ exports.AdminAproveEmailSand = async (req, res, next) =>{
           console.log("Email has been sent to your inbox", info.response);
       }
   })
-  transporter.sendMail(mailOptionsme,(err, info)=>{
-      if(err){
-          console.log("erro",err.message);
-      }else{
-          console.log("Email has been sent to your inbox", info.response);
-      }
-  })
+//   transporter.sendMail(mailOptionsme,(err, info)=>{
+//       if(err){
+//           console.log("erro",err.message);
+//       }else{
+//           console.log("Email has been sent to your inbox", info.response);
+//       }
+//   })
   
     res.status(200).json({
       status: 'success',
