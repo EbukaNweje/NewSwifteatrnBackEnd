@@ -171,7 +171,7 @@ exports.addProfit = async (req, res) => {
     try {
         // Extract user ID and profit details from the request
         const { id } = req.params;
-        const amount = req.body.amount;
+        const amount = req.body;
 
         // Validate the profit amount
         const profitAmount = Number(amount);
