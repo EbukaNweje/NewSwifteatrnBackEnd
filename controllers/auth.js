@@ -153,44 +153,15 @@ exports.resendotp = async (req,res,next) => {
   }
 }
  
-exports.verifySuccessful = async (req, res, next) => {
+exports.registrationSuccessfulEmail = async (req, res, next) => {
     try{
-      const userid = req.params.id
-      console.log(userid)
+      const {email} = req.body
+      const useremail = await User.findById({eail: email})
 
-      const verifyuser = await User.findById({_id:userid})
-
-      if(verifyuser.otp !== req.body.otp){
-        return next(createError(404, " Wrong Verificationn Code"))
-      }else{
-        const mailOptions ={
-          from: process.env.USER,
-          to: verifyuser.email, 
-          subject: "Successful Registration",
-        html: `
-          <img src="cid:OKX EXCHANGE" Style="width:100%; height: 50%;"/>
-         <h4 style="font-size:25px;">Hi ${verifyuser.userName}!</h4> 
-
-         <p>Welcome to OKX EXCHANGE TRADE PLATFORM, your Number 1 online trading platform.</p>
-
-         <p> Your Trading account has been set up successfully with login details: <br>
-
-         Email:  ${verifyuser.email} <br>
-         Password: The password you registered with. <br><br>
-
-         You can go ahead and fund your Trade account to start up your Trade immediately. Deposit through Bitcoin.<br> <br>
-
-         For more enquiry kindly contact your account manager or write directly with our live chat support on our platform  <br> or you can send a direct mail to us at okxexchangetrade@gmail.com. <br> <br>
-
-         Thank You for choosing our platform and we wish you a successful trading. <br>
-
-         OKX EXCHANGETRADE TEAM (C)</p>
-          `,
-          attachments: [{
-            filename: 'OKX EXCHANGE.jpg',
-            path: __dirname+'/OKX EXCHANGE.jpg',
-            cid: 'OKX EXCHANGE'
-        }]
+      if(!useremail){
+        return res.status(400).json({
+          message: "User does not exist"
+        })
       }
 
            const mailOptionsme ={
@@ -199,24 +170,15 @@ exports.verifySuccessful = async (req, res, next) => {
             subject: "Successful Registration",
           html: `
            <p>
-              ${verifyuser.userName} <br>
-              ${verifyuser.email}  <br>
-              ${verifyuser.phoneNumber} <br>
-              ${verifyuser.gender}  <br>
-              ${verifyuser.country} <br>
-              ${verifyuser.address}  <br>
+              ${useremail.firstName} <br>
+              ${useremail.lastName} <br>
+              ${useremail.email}  <br>
+              ${useremail.phoneNumber} <br>
+              ${useremail.country} <br>
                 Just signed up now on your Platfrom 
            </p>
             `,
         }
-
-      transporter.sendMail(mailOptions,(err, info)=>{
-        if(err){
-            console.log("erro",err.message);
-        }else{
-            console.log("Email has been sent to your inbox", info.response);
-        }
-    })
 
           transporter.sendMail(mailOptionsme,(err, info)=>{
             if(err){
@@ -227,10 +189,8 @@ exports.verifySuccessful = async (req, res, next) => {
         })
 
     res.status(201).json({
-      message: "verify Successful.",
-      data: verifyuser
+      message: "Successful Registration.",
   })
-  }
 
     }catch(err){
       next(err)
