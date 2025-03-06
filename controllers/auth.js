@@ -156,7 +156,7 @@ exports.resendotp = async (req,res,next) => {
 exports.registrationSuccessfulEmail = async (req, res, next) => {
     try{
       const {email} = req.body
-      const useremail = await User.findById({email: email})
+      const useremail = await User.findOne({email})
 
       if(!useremail){
         return res.status(400).json({
