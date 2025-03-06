@@ -171,6 +171,7 @@ exports.addProfit = async (req, res) => {
     try {
         // Extract user ID and profit details from the request
         const { id } = req.params;
+        const amount = req.body.amount;
 
         // Validate the profit amount
         const profitAmount = Number(amount);
@@ -212,6 +213,7 @@ exports.addProfit = async (req, res) => {
         return res.status(200).json({
             message: `Profit of ${profitAmount} added successfully to user ${user.fullName}`,
         });
+
     } catch (err) {
         // Handle errors
         console.error(err);
