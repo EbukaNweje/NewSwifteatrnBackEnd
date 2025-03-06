@@ -274,91 +274,8 @@ exports.AdminAproveEmailSand = async (req, res, next) =>{
     const mailOptions ={
       from: process.env.USER,
       to: UserEmail.email,
-      subject: "Successful Sign Up!",
-    html: `
-
-
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: whitesmoke;
-        }
-        .container {
-            width: 100%;
-            background-color: whitesmoke;
-            padding: 0;
-            margin: 0;
-        }
-        .header, .footer {
-            width: 100%;
-            background-color: #21007F;
-            color: white;
-            text-align: center;
-        }
-        .content {
-            width: 100%;
-            max-width: 600px;
-            background-color: white;
-            padding: 20px;
-            margin: 20px auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .footer-content {
-            padding: 20px;
-            text-align: center;
-        }
-        .contact-info, .social-icons {
-            display: inline-block;
-            vertical-align: top;
-            width: 48%;
-            margin-bottom: 20px;
-        }
-        .social-icons img {
-            width: 30px;
-            margin: 0 5px;
-        }
-        .footer-logo img {
-            width: 50px;
-        }
-        .footer-logo, .footer-info {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .footer p {
-            margin: 5px 0;
-        }
-    </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="header">
-                <table width="100%" cellspacing="0" cellpadding="0">
-                    <tr>
-                        <td style="padding: 10px;">
-                            <div class="contact-info">
-                                <p>+1 (302) 786‑5689</p>
-                                <p>theswifteatrnprime@gmail.com</p>
-                                <p>18 Eastbourne Rd, United Kingdom</p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 20px 0;">
-                            <h1 style="color: #ffffff; font-size: 40px; font-family: Impact, sans-serif; font-weight: 500">Swifteatrn Prime</h1>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-    
-            <div class="content">
+      subject: "Your Trading Account Has Been Approved",
+    html: ` 
                 <h5>Hi ${UserEmail.userName},</h5>
                 <span>Your trading account has been approved successfully.</span>
                 <p>To get started kindly use this link to login: https://swifteatrn-prime-dash-board.vercel.app/</p>
@@ -366,21 +283,6 @@ exports.AdminAproveEmailSand = async (req, res, next) =>{
                 <span>For more enquiries, kindly contact your account manager or use our live chat support on our platform. You can also send a direct mail to us at <span style="color: #4c7fff;">${process.env.USER}</span></span>
                 <span>Thank you for choosing our platform. We wish you all the best in your trading journey..</span>
             </div>
-    
-            <div class="footer">
-                <div class="footer-content">
-                    <div class="https://i.ibb.co/Gcs5Lbx/jjjjjjjjjj.jpg">
-                        <img src="footer-logo.png" alt="">
-                    </div>
-                    <div class="footer-info">
-                        <p>We bring the years, global experience, and stamina to guide our clients through new and often disruptive realities.</p>
-                        <p>© Copyright 2024 Swifteatrn Prime. All Rights Reserved.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
-    </html>
     
      
       `,
