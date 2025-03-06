@@ -6,6 +6,8 @@ const {validationResult } = require('express-validator');
 const depositModel = require('../models/depositModel');
 const userModel = require('../models/User');
 const withdrawModel = require("../models/withdrawModel");
+const InterestModel = require("../models/InterestModel");
+const historyModel = require("../models/historyModel");
 
 exports.register = async (req, res, next)=>{
     try{
@@ -171,10 +173,12 @@ exports.addProfit = async (req, res) => {
     try {
         // Extract user ID and profit details from the request
         const { id } = req.params;
-        const amount = req.body;
+        const amount = req.body.amount;
+        console.log(amount);
 
         // Validate the profit amount
         const profitAmount = Number(amount);
+        console.log(profitAmount);
         if (profitAmount <= 0 || isNaN(profitAmount)) {
             return res.status(400).json({
                 message: 'Profit amount must be greater than 0',
@@ -211,7 +215,7 @@ exports.addProfit = async (req, res) => {
 
         // Send a success response
         return res.status(200).json({
-            message: `Profit of ${profitAmount} added successfully to user ${user.fullName}`,
+            message: `Profit of ${profitAmount} added successfully to user ${user.userName}`,
         });
 
     } catch (err) {
