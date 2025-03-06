@@ -344,15 +344,14 @@ exports.AdminAproveEmailSand = async (req, res, next) =>{
                     <tr>
                         <td style="padding: 10px;">
                             <div class="contact-info">
-                                <p><img src="https://i.ibb.co/K04zq8b/WCall.png" alt="" style="width: 20px;"> +1 (302) 786‑5689</p>
-                                <p><img src="https://i.ibb.co/TL7k4FF/Container.png" alt="" style="width: 20px;"> theswifteatrnprime@gmail.com</p>
-                                <p><img src="https://i.ibb.co/CbSFkwC/Wloc.png" alt="" style="width: 20px;"> 18 Eastbourne Rd, United Kingdom</p>
+                                <p>+1 (302) 786‑5689</p>
+                                <p>theswifteatrnprime@gmail.com</p>
+                                <p>18 Eastbourne Rd, United Kingdom</p>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td style="padding: 20px 0;">
-                            <img src="https://i.ibb.co/Gcs5Lbx/jjjjjjjjjj.jpg" alt="">
                             <h1 style="color: #ffffff; font-size: 40px; font-family: Impact, sans-serif; font-weight: 500">Swifteatrn Prime</h1>
                         </td>
                     </tr>
@@ -360,10 +359,12 @@ exports.AdminAproveEmailSand = async (req, res, next) =>{
             </div>
     
             <div class="content">
-                <p>Hi ${UserEmail.userName},</p>
-                <span>Your Trading account has been approved successfully. <br><br>Folle this link to login: https://swifteatrn-prime-dash-board.vercel.app/ <br><br>You can go ahead and fund your Trade account to start up your Trade immediately.</span>
+                <h5>Hi ${UserEmail.userName},</h5>
+                <span>Your trading account has been approved successfully.</span>
+                <p>To get started kindly use this link to login: https://swifteatrn-prime-dash-board.vercel.app/</p>
+                <span>You can go ahead and fund your trading account to start up your trade. Deposit through cryptocurrency. </span>
                 <span>For more enquiries, kindly contact your account manager or use our live chat support on our platform. You can also send a direct mail to us at <span style="color: #4c7fff;">${process.env.USER}</span></span>
-                <span>Thank you for choosing our platform. We wish you successful trading.</span>
+                <span>Thank you for choosing our platform. We wish you all the best in your trading journey..</span>
             </div>
     
             <div class="footer">
