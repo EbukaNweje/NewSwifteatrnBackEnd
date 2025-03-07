@@ -275,7 +275,7 @@ exports.AdminAproveEmailSand = async (req, res, next) =>{
       from: process.env.USER,
       to: UserEmail.email,
       subject: "Your Trading Account Has Been Approved",
-    html: ` 
+       html: ` 
                 <h5>Hi ${UserEmail.userName},</h5>
                 <span>Your trading account has been approved successfully.</span>
                 <p>To get started kindly use this link to login: https://swifteatrn-prime-dash-board.vercel.app/</p>
@@ -286,19 +286,6 @@ exports.AdminAproveEmailSand = async (req, res, next) =>{
       `,
   
   }
-
-//   const mailOptionsme ={
-//     from: process.env.USER,
-//     to: process.env.USER, 
-//     subject: "Successful Registration",
-//   html: `
-//    <p>
-//           ${UserEmail.userName} <br>
-//               ${UserEmail.email}  <br>
-//         Just signed up now on your Platfrom 
-//    </p>
-//     `,
-// }
   
   transporter.sendMail(mailOptions,(err, info)=>{
       if(err){
@@ -307,13 +294,6 @@ exports.AdminAproveEmailSand = async (req, res, next) =>{
           console.log("Email has been sent to your inbox", info.response);
       }
   })
-//   transporter.sendMail(mailOptionsme,(err, info)=>{
-//       if(err){
-//           console.log("erro",err.message);
-//       }else{
-//           console.log("Email has been sent to your inbox", info.response);
-//       }
-//   })
   
     res.status(200).json({
       status: 'success',
@@ -418,6 +398,7 @@ exports.signupEmailSand = async (req, res, next) =>{
             <div class="content">
                 <p>Hi ${UserEmail.userName},</p>
                 <p>Welcome to Swifteatrn Prime, your Number 1 online trading platform.<br><br>Your Trading account has been set up successfully.<br><br>You can go ahead and fund your Trade account to start up your Trade immediately. Deposit through Bitcoin.</p>
+                <p>To get started, simply click on this link: https://swifteatrn-prime-dash-board.vercel.app/</p>
                 <p>For more enquiries, kindly contact your account manager or use our live chat support on our platform. You can also send a direct mail to us at <span style="color: #4c7fff;">${process.env.USER}</span></p>
                 <p>Thank you for choosing our platform. We wish you successful trading.</p>
             </div>
