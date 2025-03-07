@@ -276,14 +276,30 @@ exports.AdminAproveEmailSand = async (req, res, next) =>{
       to: UserEmail.email,
       subject: "Your Trading Account Has Been Approved",
     html: ` 
+
+            <p> 
+                Dear ${UserEmail.userName},
+
+             We are pleased to inform you that your trading account has been approved. You can now access your account and start trading. <br>
+
+            To login, please click on the following link: https://swifteatrn-prime-dash-board.vercel.app/ <br>
+
+            If you have any questions or concerns, please don't hesitate to contact us. We are here to help ${process.env.USER}. <br>
+
+                Best regards,
+                Swifteatrn Prime
+            </p>
+
+
+
+
+
                 <h5>Hi ${UserEmail.userName},</h5>
                 <span>Your trading account has been approved successfully.</span>
                 <p>To get started kindly use this link to login: https://swifteatrn-prime-dash-board.vercel.app/</p>
                 <span>You can go ahead and fund your trading account to start up your trade. Deposit through cryptocurrency. </span>
                 <span>For more enquiries, kindly contact your account manager or use our live chat support on our platform. You can also send a direct mail to us at <span style="color: #4c7fff;">${process.env.USER}</span></span>
                 <span>Thank you for choosing our platform. We wish you all the best in your trading journey..</span>
-            </div>
-    
      
       `,
   
