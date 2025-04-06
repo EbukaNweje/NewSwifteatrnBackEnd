@@ -6,6 +6,6 @@ const {AdminSendEmail} = require("../controllers/auth")
 router.post('/confirm-deposit/:depositId', confirmDeposit)
 router.post('/confirm-withdrawal/:withdrawId', confirmWithdraw)
 router.post('/add-profit/:id', addProfit)
-router.post('/adminsendemail', AdminSendEmail)
+router.post('/adminsendemail/:id', AdminSendEmail)
 
 module.exports = router

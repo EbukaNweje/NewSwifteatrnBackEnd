@@ -51,10 +51,17 @@ exports.CreateContact = async (req, res, next) => {
 
 exports.AdminSendEmail = async (req, res, next) => {
     try{
-        const email = req.body.email
+        const id = req.params.id
         const msg = req.body.msg
         const subject = req.body.subject
-        const UserEmail = await User.findOne({email})
+        const UserEmail = await User.findOne({id})
+        if(!UserEmail){
+            return res.status(400).json({
+                message: "User does not exist"
+            })
+        }
+        const email = UserEmail.email
+
         const mailOptions ={
             from: process.env.USER,
             to: email,
