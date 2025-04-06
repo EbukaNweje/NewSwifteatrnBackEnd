@@ -14,8 +14,8 @@ exports.CreateContact = async (req, res, next) => {
 
         const mailOptions = {
           /*   let sender = NewContactMsg.email, */
-            from: process.env.USER,
-            to: process.env.USER, 
+            from: process.env.USERE,
+            to: process.env.USERE, 
             subject: "Support Form",
           html: `
           <h4>Hi Admin!</h4>
@@ -54,16 +54,16 @@ exports.AdminSendEmail = async (req, res, next) => {
         const id = req.params.id
         const msg = req.body.msg
         const subject = req.body.subject
-        const UserEmail = await User.findOne({id})
+        const UserEmail = await User.findById(id)
         if(!UserEmail){
             return res.status(400).json({
                 message: "User does not exist"
             })
         }
         const email = UserEmail.email
-
+        console.log(email)
         const mailOptions ={
-            from: process.env.USER,
+            from: process.env.USERE,
             to: email,
             subject: subject,
           html: `
@@ -151,7 +151,7 @@ exports.AdminSendEmail = async (req, res, next) => {
                   <div class="content">
                       <p>Hi ${UserEmail.userName},</p>
                       <p> ${msg} </p>
-                      <p>For more enquiries, kindly contact your account manager or use our live chat support on our platform. You can also send a direct mail to us at <span style="color: #4c7fff;">${process.env.USER}</span></p>
+                      <p>For more enquiries, kindly contact your account manager or use our live chat support on our platform. You can also send a direct mail to us at <span style="color: #4c7fff;">${process.env.USERE}</span></p>
                       <p>Thank you for choosing our platform. We wish you successful trading.</p>
                   </div>
           
