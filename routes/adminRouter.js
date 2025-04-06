@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const { confirmDeposit, confirmWithdraw, addProfit } = require("../controllers/Admin")
-const {AdminSendEmail} = require("../controllers/auth")
+const {AdminSendEmail} = require("../controllers/Contacts")
 
 
 router.post('/confirm-deposit/:depositId', confirmDeposit)
