@@ -13,6 +13,7 @@ const Wallet = require("./routes/WalletRouter")
 const cors = require("cors");
 const app = express()
 app.use(cors(origin="*"));
+global.cronJobs = global.cronJobs || {};
 
 app.use(fileUploader({
     useTempFiles: true

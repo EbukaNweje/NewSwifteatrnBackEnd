@@ -331,26 +331,32 @@ const addInterest = async (investmentId) => {
         const currentDate = DateTime.now();
         const endDate = DateTime.fromJSDate(investment.endDate);
         if (currentDate > endDate) {
-            // Stop the cron job for this investment
             if (global.cronJobs[investmentId]) {
                 global.cronJobs[investmentId].stop();
                 delete global.cronJobs[investmentId];
+                console.log(`⏹️ Stopped cron job for expired investment: ${investmentId}`);
             }
             return;
         }
 
         const interestAmount = (investment.amount * plan.percentageInterest) / 100;
 
-        // Update user's account balance and total profit
+        // Update user
         user.accountBalance += interestAmount;
         user.totalProfit += interestAmount;
-        await user.save();
 
-        // Update investment's total daily interest
+        if (!user.Transactions) user.Transactions = { interests: [] };
+        if (!Array.isArray(user.Transactions.interests)) {
+            user.Transactions.interests = [];
+        }
+
+        // Update investment
         investment.totalDailyInterest += interestAmount;
-        await investment.save();
+        if (!Array.isArray(investment.Interests)) {
+            investment.Interests = [];
+        }
 
-        // Log the interest transaction
+        // Create interest transaction
         const interestTransaction = new InterestModel({
             user: user._id,
             plan: plan._id,
@@ -360,25 +366,25 @@ const addInterest = async (investmentId) => {
         });
         await interestTransaction.save();
 
-        // Update user's interest transactions
+        // Append transaction to user & investment
         user.Transactions.interests.push(interestTransaction._id);
-        await user.save();
-
-        // Update investment's interest transactions
         investment.Interests.push(interestTransaction._id);
-        await investment.save();
 
-        // Log a notification message for the user
-        // (Implement your notification logic here)
+        // Save both
+        await Promise.all([
+            user.save(),
+            investment.save()
+        ]);
 
-        console.log(`Interest added for investment ${investmentId}: ${interestAmount}`);
+        console.log(`✅ Interest added for investment ${investmentId}: ${interestAmount}`);
+        
+        // You can trigger user notifications here if needed
+
     } catch (error) {
-        console.error('Error adding interest:', error);
+        console.error('❌ Error adding interest:', error.message || error);
     }
 };
 
-// Store cron jobs globally
-global.cronJobs = {};
 
 exports.makeInvestment = async (req, res) => {
     try {
